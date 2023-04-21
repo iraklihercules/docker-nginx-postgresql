@@ -9,3 +9,10 @@ services:
         volumes:
             - "./app/files/nginx.conf:/etc/nginx/conf.d/default.conf"
             - "./app/src:/var/www/html"
+        links:
+            - phpfpm
+    phpfpm:
+        image: php:8.2-fpm
+        container_name: irakli_php
+        volumes:
+            - "./app/src:/var/www/html"
