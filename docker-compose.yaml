@@ -12,7 +12,7 @@ services:
         links:
             - phpfpm
     phpfpm:
-        image: php:8.2-fpm
+        build: "./app/"
         container_name: irakli_php
         volumes:
             - "./app/src:/var/www/html"
