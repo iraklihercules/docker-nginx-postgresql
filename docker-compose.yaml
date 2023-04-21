@@ -16,3 +16,16 @@ services:
         container_name: irakli_php
         volumes:
             - "./app/src:/var/www/html"
+        links:
+            - postgres
+    postgres:
+        image: postgres:15.2  # Compatible with MacBook M1
+        container_name: irakli_postgres
+        environment:
+            POSTGRES_DB: test
+            POSTGRES_USER: test
+            POSTGRES_PASSWORD: test
+        ports:
+            - "5432:5432"
+        volumes:
+            - "./data:/var/lib/postgresql/data"

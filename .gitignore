@@ -28,3 +28,7 @@ Thumbs.db
 *.flv
 *.mov
 *.wmv
+
+# Database directory
+data/*
+!/**/.gitkeep
