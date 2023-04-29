@@ -32,4 +32,5 @@ Thumbs.db
 # Database directory
 data/*
 !/**/.gitkeep
-mongo/data/
+mongo3/data/
+mongo6/data/

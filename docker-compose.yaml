@@ -44,14 +44,20 @@ services:
 #            - postgres
 #        links:
 #            - postgres
-#    mongodb:
-#        image: mongo:5.0
-#        container_name: irakli_mongodb
+    mongo6:
+        image: mongo:6.0
+        container_name: irakli_mongo_6
+        restart: always
+        platform: linux/amd64
 #        environment:
 #            MONGO_INITDB_ROOT_USERNAME: root
 #            MONGO_INITDB_ROOT_PASSWORD: example
-#        ports:
-#            - 27018:27017
+        ports:
+            - 27019:27017
+        volumes:
+            - "./mongo6/config:/data/configdb"
+            - "./mongo6/data:/data/db"
+            - "./scripts:/docker-entrypoint-initdb.d"
 #    mongoexpress:
 #        image: mongo-express:latest
 #        container_name: irakli_mongoexpress
@@ -68,10 +74,10 @@ services:
 #            - mongodb
 #        links:
 #            - mongodb
-    mongodb:
+    mongo3:
         # https://hub.docker.com/_/mongo/
         image: mongo:3.6
-        container_name: irakli_mongo
+        container_name: irakli_mongo_3
         restart: always
         platform: linux/amd64
     #    environment:
@@ -80,11 +86,11 @@ services:
     #      MONGO_INITDB_DATABASE: mongo_testing
         volumes:
 #            - mongo_data:/data/db
-            - "./mongo/data:/data/db"
-            - "./mongo/config:/data/configdb"
 #            - mongo_config:/data/configdb
 #          - ./fixtures:/fixtures
-            - ./scripts:/docker-entrypoint-initdb.d
+            - "./mongo3/config:/data/configdb"
+            - "./mongo3/data:/data/db"
+            - "./scripts:/docker-entrypoint-initdb.d"
         ports:
             - 27018:27017
 
