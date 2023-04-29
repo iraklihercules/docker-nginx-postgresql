@@ -45,17 +45,21 @@ services:
 #        links:
 #            - postgres
     mongo6:
-        image: mongo:6.0
+#        image: mongo:6.0
+        image: mongo:4.4.6  # Last MongoDB version not requiring the CPU with AVX support.
         container_name: irakli_mongo_6
         restart: always
         platform: linux/amd64
-#        environment:
+        environment:
 #            MONGO_INITDB_ROOT_USERNAME: root
 #            MONGO_INITDB_ROOT_PASSWORD: example
+            MONGO_INITDB_ROOT_USERNAME: mongouser
+            MONGO_INITDB_ROOT_PASSWORD: mongopass
+            MONGO_INITDB_DATABASE: mongo_testing
         ports:
             - 27019:27017
         volumes:
-            - "./mongo6/config:/data/configdb"
+#            - "./mongo6/config:/data/configdb"
             - "./mongo6/data:/data/db"
             - "./scripts:/docker-entrypoint-initdb.d"
 #    mongoexpress:
@@ -88,7 +92,7 @@ services:
 #            - mongo_data:/data/db
 #            - mongo_config:/data/configdb
 #          - ./fixtures:/fixtures
-            - "./mongo3/config:/data/configdb"
+#            - "./mongo3/config:/data/configdb"
             - "./mongo3/data:/data/db"
             - "./scripts:/docker-entrypoint-initdb.d"
         ports:
