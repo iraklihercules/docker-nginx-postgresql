@@ -62,41 +62,41 @@ services:
 #            - "./mongo6/config:/data/configdb"
             - "./mongo6/data:/data/db"
             - "./scripts:/docker-entrypoint-initdb.d"
-#    mongoexpress:
-#        image: mongo-express:latest
-#        container_name: irakli_mongoexpress
-#        restart: always
-##        restart: unless-stopped
-#        ports:
-#            - 8082:8081
-#        environment:
-#            ME_CONFIG_MONGODB_ADMINUSERNAME: root
-#            ME_CONFIG_MONGODB_ADMINPASSWORD: example
-#            ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
-##            ME_CONFIG_MONGODB_SERVER: mongodb
-#        depends_on:
-#            - mongodb
-#        links:
-#            - mongodb
-    mongo3:
-        # https://hub.docker.com/_/mongo/
-        image: mongo:3.6
-        container_name: irakli_mongo_3
+    mongoexpress:
+        image: mongo-express:latest
+        container_name: irakli_mongoexpress
         restart: always
-        platform: linux/amd64
-    #    environment:
-    #      MONGO_INITDB_ROOT_USERNAME: mongouser
-    #      MONGO_INITDB_ROOT_PASSWORD: secret
-    #      MONGO_INITDB_DATABASE: mongo_testing
-        volumes:
-#            - mongo_data:/data/db
-#            - mongo_config:/data/configdb
-#          - ./fixtures:/fixtures
-#            - "./mongo3/config:/data/configdb"
-            - "./mongo3/data:/data/db"
-            - "./scripts:/docker-entrypoint-initdb.d"
+#        restart: unless-stopped
         ports:
-            - 27018:27017
+            - 8082:8081
+        environment:
+            ME_CONFIG_MONGODB_ADMINUSERNAME: mongouser
+            ME_CONFIG_MONGODB_ADMINPASSWORD: mongopass
+#            ME_CONFIG_MONGODB_URL: mongodb://mongouser:mongopass@mongo:27017/
+            ME_CONFIG_MONGODB_SERVER: mongo6
+        depends_on:
+            - mongo6
+        links:
+            - mongo6
+#    mongo3:
+#        # https://hub.docker.com/_/mongo/
+#        image: mongo:3.6
+#        container_name: irakli_mongo_3
+#        restart: always
+#        platform: linux/amd64
+#    #    environment:
+#    #      MONGO_INITDB_ROOT_USERNAME: mongouser
+#    #      MONGO_INITDB_ROOT_PASSWORD: secret
+#    #      MONGO_INITDB_DATABASE: mongo_testing
+#        volumes:
+##            - mongo_data:/data/db
+##            - mongo_config:/data/configdb
+##          - ./fixtures:/fixtures
+##            - "./mongo3/config:/data/configdb"
+#            - "./mongo3/data:/data/db"
+#            - "./scripts:/docker-entrypoint-initdb.d"
+#        ports:
+#            - 27018:27017
 
 #volumes:
 ##    mongo_data:
