@@ -11,3 +11,8 @@ db.createUser(
         ]
     }
 );
+
+
+// db.mongo_testing.hello.insert({
+//     "name": "Hello 123"
+// });

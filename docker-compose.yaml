@@ -71,6 +71,7 @@ services:
     mongodb:
         # https://hub.docker.com/_/mongo/
         image: mongo:3.6
+        container_name: irakli_mongo
         restart: always
         platform: linux/amd64
     #    environment:
@@ -78,14 +79,16 @@ services:
     #      MONGO_INITDB_ROOT_PASSWORD: secret
     #      MONGO_INITDB_DATABASE: mongo_testing
         volumes:
-          - mongo_data:/data/db
-          - mongo_config:/data/configdb
+#            - mongo_data:/data/db
+            - "./mongo/data:/data/db"
+            - "./mongo/config:/data/configdb"
+#            - mongo_config:/data/configdb
 #          - ./fixtures:/fixtures
-          - ./scripts:/docker-entrypoint-initdb.d
+            - ./scripts:/docker-entrypoint-initdb.d
         ports:
             - 27018:27017
 
-volumes:
-    mongo_data:
-    mongo_config:
+#volumes:
+##    mongo_data:
+#    mongo_config:
 
