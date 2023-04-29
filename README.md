@@ -5,8 +5,8 @@ This is a basic Docker template with `Nginx` `PHP-FPM` `PostgreSQL` and `pgAdmin
 
 ### 1. What the app does ###
 
-1. It creates a table in the database (in the container)
-2. Then inserts an user
+1. Creates a table
+2. Inserts an user
 3. Gets the user back
 4. Displays the user
 
